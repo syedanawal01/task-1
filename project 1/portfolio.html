@@ -1,0 +1,1466 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Umair Rasheed | Personal Portfolio</title>
+
+    <meta name="description"
+          content="Personal portfolio of Umair Rasheed — Advocate, AI Specialist, and Aspiring Full-Stack Developer.">
+
+    <style>
+        /* =========================
+           1. GLOBAL STYLES
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #050505;
+            --dark: #0d0d0d;
+            --card: #111111;
+            --white: #ffffff;
+            --gray: #a1a1a1;
+            --border: rgba(255, 255, 255, 0.13);
+            --glow: rgba(255, 255, 255, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        ::selection {
+            background: white;
+            color: black;
+        }
+
+        /* =========================
+           2. ANIMATED BACKGROUND
+        ========================= */
+
+        #particles {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .background-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.035);
+            filter: blur(100px);
+            top: 10%;
+            right: -150px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .background-glow.two {
+            top: 65%;
+            left: -180px;
+        }
+
+        /* =========================
+           3. MAIN LAYOUT
+        ========================= */
+
+        .layout {
+            width: min(1400px, 100%);
+            margin: auto;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .glass {
+            background: rgba(17, 17, 17, 0.76);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* =========================
+           4. SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: sticky;
+            top: 28px;
+            min-width: 0;
+            padding: 28px 22px;
+            border-radius: 24px;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 255, 255, 0.025);
+        }
+
+        .logo {
+            display: inline-block;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+
+        .logo span {
+            color: #777;
+        }
+
+        .profile-picture {
+            width: 145px;
+            height: 145px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            padding: 5px;
+            border: 1px solid #555;
+            background: linear-gradient(145deg, #444, #080808, #777);
+            box-shadow:
+                0 0 25px rgba(255, 255, 255, 0.09),
+                8px 8px 20px #000;
+            transform: translateZ(25px);
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: grayscale(100%);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .profile-role {
+            font-size: 12px;
+            color: var(--gray);
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: #ccc;
+            padding: 7px 13px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            margin-bottom: 25px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+        }
+
+        .sidebar-divider {
+            border: none;
+            height: 1px;
+            background: var(--border);
+            margin: 10px 0 20px;
+        }
+
+        .side-nav {
+            display: grid;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .side-nav a {
+            padding: 11px 14px;
+            border-radius: 10px;
+            color: #999;
+            font-size: 13px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .side-nav a:hover,
+        .side-nav a.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--border);
+            transform: translateX(4px);
+        }
+
+        .side-nav a span {
+            display: inline-block;
+            width: 30px;
+            color: #666;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 24px;
+        }
+
+        .social-links a {
+            width: 37px;
+            height: 37px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #aaa;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: black;
+            background: white;
+            transform: translateY(-4px);
+        }
+
+        /* =========================
+           5. MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            min-width: 0;
+            display: grid;
+            gap: 25px;
+        }
+
+        .section {
+            padding: 42px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 11px;
+            color: #999;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-size: clamp(26px, 4vw, 38px);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .muted {
+            color: var(--gray);
+        }
+
+        /* =========================
+           6. HERO SECTION
+        ========================= */
+
+        .hero {
+            min-height: 490px;
+            display: flex;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            transform-style: preserve-3d;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            border: 1px solid #444;
+            border-radius: 30px;
+            padding: 7px 14px;
+            font-size: 11px;
+            color: #ccc;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 75px);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.07;
+            margin-bottom: 20px;
+            text-shadow: 0 8px 30px rgba(255, 255, 255, 0.09);
+            transform: translateZ(35px);
+        }
+
+        .hero h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px #aaa;
+        }
+
+        .hero-description {
+            max-width: 530px;
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 28px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 20px;
+            border-radius: 11px;
+            border: 1px solid #555;
+            background: transparent;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: #ddd;
+        }
+
+        /* 3D floating sphere */
+
+        .sphere {
+            position: absolute;
+            right: 4%;
+            top: 22%;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 28% 25%, #fff 0%, #aaa 4%,
+                #555 15%, #1a1a1a 42%, #050505 70%);
+            box-shadow:
+                inset -20px -20px 40px #000,
+                inset 10px 10px 25px rgba(255, 255, 255, 0.3),
+                0 0 50px rgba(255, 255, 255, 0.08);
+            animation: float 6s ease-in-out infinite;
+            transform-style: preserve-3d;
+            pointer-events: none;
+        }
+
+        .sphere::before,
+        .sphere::after {
+            content: "";
+            position: absolute;
+            inset: -18px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: rotateX(65deg) rotateY(15deg);
+        }
+
+        .sphere::after {
+            inset: -30px;
+            transform: rotateX(75deg) rotateY(-25deg);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateY(25deg);
+            }
+        }
+
+        /* =========================
+           7. ABOUT SECTION
+        ========================= */
+
+        .about-text {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--border);
+            padding: 17px;
+            border-radius: 13px;
+            transition: 0.3s;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.055);
+        }
+
+        .info-box small {
+            color: #777;
+            display: block;
+            font-size: 10px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-box strong {
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        /* =========================
+           8. SKILLS SECTION
+        ========================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .skill-card {
+            padding: 20px;
+            background: linear-gradient(145deg, #171717, #0a0a0a);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            transform-style: preserve-3d;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .skill-card:hover {
+            border-color: #777;
+            transform: perspective(700px) rotateX(4deg) rotateY(-4deg)
+                       translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 23px;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .skill-card h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .skill-card p {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* =========================
+           9. EXPERIENCE / EDUCATION
+        ========================= */
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+            border-left: 1px solid #444;
+            margin-left: 6px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -31px;
+            top: 8px;
+            width: 11px;
+            height: 11px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+        }
+
+        .timeline-date {
+            color: #888;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-item h4 {
+            font-size: 12px;
+            color: #bbb;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item p {
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* =========================
+           10. PROJECTS
+        ========================= */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .project-card {
+            padding: 22px;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(145deg, #191919, #090909);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            transition: 0.3s;
+            transform-style: preserve-3d;
+        }
+
+        .project-card:hover {
+            transform: perspective(800px) rotateX(3deg) rotateY(-3deg)
+                       translateY(-6px);
+            border-color: #777;
+            box-shadow: 0 18px 35px #000;
+        }
+
+        .project-number {
+            font-size: 30px;
+            font-weight: 900;
+            color: #444;
+            margin-bottom: 14px;
+        }
+
+        .project-card h3 {
+            font-size: 15px;
+            margin-bottom: 9px;
+        }
+
+        .project-card p {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 17px;
+        }
+
+        .project-link {
+            margin-top: auto;
+            font-size: 12px;
+            color: #ddd;
+        }
+
+        /* =========================
+           11. CONTACT SECTION
+        ========================= */
+
+        .contact-text {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            background: #090909;
+            color: white;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 14px;
+            font: inherit;
+            font-size: 12px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #aaa;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #777;
+        }
+
+        .form-note {
+            font-size: 10px;
+            color: #777;
+        }
+
+        /* =========================
+           12. FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            padding: 10px 0 25px;
+        }
+
+        .footer span {
+            color: white;
+        }
+
+        /* =========================
+           13. REVEAL ANIMATIONS
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           14. RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 1000px) {
+            .layout {
+                grid-template-columns: 240px minmax(0, 1fr);
+                padding: 18px;
+                gap: 18px;
+            }
+
+            .section {
+                padding: 30px;
+            }
+
+            .sphere {
+                width: 135px;
+                height: 135px;
+                right: 8%;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .layout {
+                grid-template-columns: 1fr;
+                padding: 14px;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+                padding: 20px;
+            }
+
+            .profile-picture {
+                width: 110px;
+                height: 110px;
+            }
+
+            .side-nav {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 5px;
+            }
+
+            .side-nav a {
+                padding: 9px 5px;
+                text-align: center;
+                font-size: 11px;
+            }
+
+            .side-nav a span {
+                display: none;
+            }
+
+            .social-links {
+                margin-top: 15px;
+            }
+
+            .section {
+                padding: 25px;
+                border-radius: 18px;
+            }
+
+            .hero {
+                min-height: 420px;
+            }
+
+            .hero h1 {
+                font-size: clamp(39px, 9vw, 60px);
+            }
+
+            .sphere {
+                opacity: 0.45;
+                width: 110px;
+                height: 110px;
+                top: 10%;
+                right: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .layout {
+                padding: 10px;
+                gap: 13px;
+            }
+
+            .main-content {
+                gap: 13px;
+            }
+
+            .section {
+                padding: 22px 18px;
+            }
+
+            .info-grid,
+            .skills-grid,
+            .projects-grid,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .sphere {
+                top: 5%;
+                right: -10px;
+                width: 90px;
+                height: 90px;
+                opacity: 0.3;
+            }
+
+            .button-group .btn {
+                padding: 11px 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Animated background canvas -->
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="background-glow"></div>
+    <div class="background-glow two"></div>
+
+    <div class="layout">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar glass">
+
+            <a href="#home" class="logo">UM<span>.</span></a>
+
+            <div class="profile-picture">
+                <!-- Replace this image URL with your own photo -->
+                <img
+                    src="https://placehold.co/400x400/111111/FFFFFF?text=YOUR+PHOTO"
+                    alt="Umair Rasheed profile photo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/111111/FFFFFF?text=UR';"
+                >
+            </div>
+
+            <h2 class="profile-name">Umair Rasheed</h2>
+
+            <p class="profile-role">
+                ADVOCATE · AI SPECIALIST
+            </p>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Open to Opportunities
+            </div>
+
+            <hr class="sidebar-divider">
+
+            <nav class="side-nav" aria-label="Main navigation">
+                <a href="#home" class="active"><span>01</span> Home</a>
+                <a href="#about"><span>02</span> About</a>
+                <a href="#skills"><span>03</span> Skills</a>
+                <a href="#experience"><span>04</span> Experience</a>
+                <a href="#projects"><span>05</span> Projects</a>
+                <a href="#contact"><span>06</span> Contact</a>
+            </nav>
+
+            <div class="social-links">
+                <!-- Replace # with your actual profile URLs -->
+                <a href="https://www.facebook.com/"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Facebook">FB</a>
+
+                <a href="https://www.linkedin.com/"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="LinkedIn">IN</a>
+
+                <a href="https://www.youtube.com/@RealVoiceOfReality"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="YouTube">YT</a>
+
+                <a href="https://www.tiktok.com/@umairrasheed"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="TikTok">TK</a>
+            </div>
+
+        </aside>
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main-content">
+
+            <!-- HERO -->
+            <section class="section hero glass reveal" id="home">
+
+                <div class="sphere" aria-hidden="true"></div>
+
+                <div class="hero-content">
+
+                    <div class="hero-tag">
+                        WELCOME TO MY DIGITAL WORLD
+                    </div>
+
+                    <h1>
+                        UMAIR
+                        <span>RASHEED.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Advocate by profession. Technology enthusiast by passion.
+                        Exploring Artificial Intelligence, building digital
+                        solutions, and creating a meaningful impact through
+                        knowledge, innovation, and service.
+                    </p>
+
+                    <div class="button-group">
+                        <a href="#projects" class="btn btn-primary">
+                            Explore My Work ↗
+                        </a>
+
+                        <a href="#contact" class="btn">
+                            Let's Connect →
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ABOUT -->
+            <section class="section glass reveal" id="about">
+
+                <p class="section-label">01 / WHO I AM</p>
+
+                <h2 class="section-title">
+                    Beyond Law.<br>
+                    <span class="muted">Beyond Limits.</span>
+                </h2>
+
+                <p class="about-text">
+                    I am Umair Rasheed, a law graduate and practicing legal
+                    professional with a growing interest in Artificial
+                    Intelligence and software development. My journey combines
+                    legal reasoning, analytical thinking, continuous learning,
+                    and a passion for technology. My goal is to use modern
+                    digital tools to solve real-world problems and create
+                    opportunities for people.
+                </p>
+
+                <div class="info-grid">
+
+                    <div class="info-box">
+                        <small>Profession</small>
+                        <strong>Advocate</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Education</small>
+                        <strong>LL.B Graduate</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Technology</small>
+                        <strong>AI & Development</strong>
+                    </div>
+
+                    <div class="info-box">
+                        <small>Mission</small>
+                        <strong>Knowledge & Social Impact</strong>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="section glass reveal" id="skills">
+
+                <p class="section-label">02 / MY EXPERTISE</p>
+
+                <h2 class="section-title">
+                    Skills & <span class="muted">Interests.</span>
+                </h2>
+
+                <div class="skills-grid">
+
+                    <div class="skill-card">
+                        <div class="skill-icon">⚖</div>
+                        <h3>Law & Litigation</h3>
+                        <p>Legal research, civil law, criminal law, and legal analysis.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">AI</div>
+                        <h3>Artificial Intelligence</h3>
+                        <p>AI tools, prompt engineering, and generative AI.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">&lt;/&gt;</div>
+                        <h3>Web Development</h3>
+                        <p>HTML, CSS, JavaScript, Python, and full-stack development.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">▥</div>
+                        <h3>Data & Analytics</h3>
+                        <p>Data analysis, visualization, Python, and Power BI.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">◎</div>
+                        <h3>Machine Learning</h3>
+                        <p>Exploring machine learning, NLP, and deep learning.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">✦</div>
+                        <h3>Social Impact</h3>
+                        <p>Education, community development, and public awareness.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="section glass reveal" id="experience">
+
+                <p class="section-label">03 / MY JOURNEY</p>
+
+                <h2 class="section-title">
+                    Experience & <span class="muted">Education.</span>
+                </h2>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">MARCH 2025 — PRESENT</div>
+                        <h3>Legal Associate</h3>
+                        <h4>Awan Law Associate · Muzaffarabad</h4>
+                        <p>
+                            Working on civil and criminal litigation,
+                            legal research, case preparation, and legal matters.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">APRIL 2023 — DECEMBER 2024</div>
+                        <h3>Practicing Advocate</h3>
+                        <h4>Zaheer & Zaheer Advocates · Karachi</h4>
+                        <p>
+                            Legal practice, litigation support, legal drafting,
+                            and court-related work.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 — 2023</div>
+                        <h3>Bachelor of Laws (LL.B)</h3>
+                        <h4>University of Karachi</h4>
+                        <p>
+                            Studied civil law, criminal law, and legal principles.
+                        </p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015 — 2018</div>
+                        <h3>Bachelor of Science (BSc)</h3>
+                        <h4>University of Azad Jammu & Kashmir</h4>
+                        <p>
+                            Undergraduate education and development of analytical skills.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="section glass reveal" id="projects">
+
+                <p class="section-label">04 / SELECTED WORK</p>
+
+                <h2 class="section-title">
+                    Featured <span class="muted">Projects.</span>
+                </h2>
+
+                <div class="projects-grid">
+
+                    <article class="project-card">
+                        <div class="project-number">01</div>
+                        <h3>Personal Portfolio</h3>
+                        <p>
+                            A modern 3D-inspired personal website showcasing
+                            professional experience, skills, and projects.
+                        </p>
+                        <a href="#home" class="project-link">
+                            Explore Portfolio ↗
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-number">02</div>
+                        <h3>School Management System</h3>
+                        <p>
+                            An educational technology concept for managing
+                            students, staff, attendance, and academic records.
+                        </p>
+                        <a href="#contact" class="project-link">
+                            Discuss Project ↗
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-number">03</div>
+                        <h3>AI & Legal Research</h3>
+                        <p>
+                            Exploring ways to use AI tools to improve legal
+                            research, document organization, and productivity.
+                        </p>
+                        <a href="#contact" class="project-link">
+                            Learn More ↗
+                        </a>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-number">04</div>
+                        <h3>Voice of Reality</h3>
+                        <p>
+                            An informative content concept focused on learning,
+                            motivation, storytelling, and social awareness.
+                        </p>
+                        <a href="https://www.youtube.com/@RealVoiceOfReality"
+                           target="_blank" rel="noopener noreferrer"
+                           class="project-link">
+                            Visit Channel ↗
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="section glass reveal" id="contact">
+
+                <p class="section-label">05 / GET IN TOUCH</p>
+
+                <h2 class="section-title">
+                    Let's Build Something<br>
+                    <span class="muted">Meaningful Together.</span>
+                </h2>
+
+                <p class="contact-text">
+                    Have a project, collaboration idea, or professional inquiry?
+                    Send me a message.
+                </p>
+
+                <!--
+                    DEMO FORM:
+                    This form opens the visitor's email application.
+                    Replace YOUR_EMAIL@example.com with your actual email.
+                -->
+
+                <form class="contact-form"
+                      id="contactForm"
+                      action="mailto:YOUR_EMAIL@example.com"
+                      method="post"
+                      enctype="text/plain">
+
+                    <div class="form-row">
+                        <input type="text"
+                               name="Name"
+                               placeholder="Your Name"
+                               aria-label="Your name"
+                               required>
+
+                        <input type="email"
+                               name="Email"
+                               placeholder="Your Email"
+                               aria-label="Your email"
+                               required>
+                    </div>
+
+                    <input type="text"
+                           name="Subject"
+                           placeholder="Subject"
+                           aria-label="Subject"
+                           required>
+
+                    <textarea name="Message"
+                              placeholder="Write your message..."
+                              aria-label="Your message"
+                              required></textarea>
+
+                    <button type="submit" class="btn btn-primary">
+                        Send Message ↗
+                    </button>
+
+                    <p class="form-note">
+                        This basic form uses your visitor's email application.
+                        A backend or form service is needed for direct online delivery.
+                    </p>
+
+                </form>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer">
+                © <span id="year"></span> Umair Rasheed.
+                Designed with purpose. Built for the future.
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        /* =========================
+           1. AUTOMATIC COPYRIGHT YEAR
+        ========================= */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+
+        /* =========================
+           2. ANIMATED PARTICLES
+        ========================= */
+
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        let particles = [];
+        let animationFrame;
+        let width = 0;
+        let height = 0;
+
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+
+            canvas.style.width = width + "px";
+            canvas.style.height = height + "px";
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            const count = Math.min(
+                75,
+                Math.floor((width * height) / 18000)
+            );
+
+            particles = Array.from({ length: count }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 1.5 + 0.3,
+                speedX: (Math.random() - 0.5) * 0.3,
+                speedY: (Math.random() - 0.5) * 0.3
+            }));
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+
+                if (!reduceMotion) {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    if (p.x < 0 || p.x > width) p.speedX *= -1;
+                    if (p.y < 0 || p.y > height) p.speedY *= -1;
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255,255,255,0.5)";
+                ctx.fill();
+
+                /* Connect nearby particles */
+                for (let j = i + 1; j < particles.length; j++) {
+                    const other = particles[j];
+                    const dx = p.x - other.x;
+                    const dy = p.y - other.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 110) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(other.x, other.y);
+
+                        ctx.strokeStyle =
+                            `rgba(255,255,255,${0.09 *
+                                (1 - distance / 110)})`;
+
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            if (!reduceMotion) {
+                animationFrame = requestAnimationFrame(drawParticles);
+            }
+        }
+
+        resizeCanvas();
+        drawParticles();
+
+        window.addEventListener("resize", () => {
+            cancelAnimationFrame(animationFrame);
+            resizeCanvas();
+            drawParticles();
+        });
+
+
+        /* =========================
+           3. SCROLL REVEAL EFFECT
+        ========================= */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        if ("IntersectionObserver" in window && !reduceMotion) {
+            const observer = new IntersectionObserver(
+                (entries, currentObserver) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            currentObserver.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.12 }
+            );
+
+            revealElements.forEach(element => observer.observe(element));
+        } else {
+            revealElements.forEach(element =>
+                element.classList.add("visible")
+            );
+        }
+
+
+        /* =========================
+           4. ACTIVE NAVIGATION
+        ========================= */
+
+        const sections = document.querySelectorAll(
+            "main section[id]"
+        );
+
+        const navLinks = document.querySelectorAll(".side-nav a");
+
+        if ("IntersectionObserver" in window) {
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle(
+                                "active",
+                                link.getAttribute("href") ===
+                                    "#" + entry.target.id
+                            );
+                        });
+                    }
+                });
+            }, { rootMargin: "-25% 0px -60% 0px" });
+
+            sections.forEach(section => navObserver.observe(section));
+        }
+
+
+        /* =========================
+           5. 3D MOUSE TILT
+        ========================= */
+
+        const tiltCards = document.querySelectorAll(
+            ".sidebar, .skill-card, .project-card"
+        );
+
+        const canHover = window.matchMedia(
+            "(hover: hover) and (pointer: fine)"
+        ).matches;
+
+        if (canHover && !reduceMotion) {
+            tiltCards.forEach(card => {
+                card.addEventListener("mousemove", event => {
+                    const rect = card.getBoundingClientRect();
+
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX =
+                        ((y - centerY) / centerY) * -3;
+
+                    const rotateY =
+                        ((x - centerX) / centerX) * 3;
+
+                    card.style.transform =
+                        `perspective(800px) rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = "";
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>

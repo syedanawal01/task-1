@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nawal Fatima — BS Education student, aspiring Python developer, and AI enthusiast.">
+  <title>Nawal Fatima | Personal Portfolio</title>
+  <style>
+    :root {
+      --black:#050505; --panel:rgba(18,18,18,.82); --white:#f7f7f7;
+      --muted:#a0a0a0; --line:rgba(255,255,255,.14);
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; scroll-padding-top:20px; }
+    body {
+      background:var(--black); color:var(--white);
+      font-family:Arial,Helvetica,sans-serif; line-height:1.7; overflow-x:hidden;
+    }
+    a { color:inherit; text-decoration:none; }
+    button,input,textarea { font:inherit; }
+    #particles { position:fixed; inset:0; width:100%; height:100%; z-index:-2; pointer-events:none; }
+    .glow { position:fixed; width:380px; height:380px; border-radius:50%; filter:blur(100px);
+      background:rgba(255,255,255,.045); top:8%; right:-160px; z-index:-1; pointer-events:none; }
+    .glow.two { top:65%; left:-180px; right:auto; }
+    .layout { width:min(1380px,100%); margin:auto; padding:26px; display:grid;
+      grid-template-columns:280px minmax(0,1fr); gap:24px; align-items:start; }
+    .glass { background:var(--panel); border:1px solid var(--line); backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px); box-shadow:0 20px 60px rgba(0,0,0,.38); }
+    .sidebar { position:sticky; top:26px; border-radius:24px; padding:27px 21px; text-align:center; }
+    .logo { display:inline-block; font-size:22px; font-weight:900; letter-spacing:4px; margin-bottom:25px; }
+    .logo span { color:#777; }
+    .avatar { width:145px; height:145px; margin:0 auto 20px; padding:5px; border-radius:50%;
+      border:1px solid #666; background:linear-gradient(145deg,#555,#080808,#999);
+      box-shadow:0 0 28px rgba(255,255,255,.1),8px 8px 20px #000; transform:translateZ(20px); }
+    .avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; filter:grayscale(100%); }
+    .name { font-size:24px; font-weight:800; line-height:1.3; }
+    .role { color:var(--muted); font-size:11px; letter-spacing:1px; margin:8px 0 18px; }
+    .status { display:inline-flex; align-items:center; gap:8px; padding:7px 12px; border:1px solid var(--line);
+      border-radius:30px; color:#ccc; font-size:11px; margin-bottom:22px; }
+    .dot { width:7px; height:7px; background:white; border-radius:50%; box-shadow:0 0 10px white; }
+    hr { border:0; height:1px; background:var(--line); margin:8px 0 18px; }
+    nav { display:grid; gap:7px; text-align:left; }
+    nav a { padding:10px 12px; border:1px solid transparent; border-radius:10px; color:#999; font-size:13px; transition:.25s; }
+    nav a span { display:inline-block; width:29px; color:#666; }
+    nav a:hover,nav a.active { color:#fff; background:rgba(255,255,255,.07); border-color:var(--line); transform:translateX(4px); }
+    .social { display:flex; justify-content:center; gap:9px; margin-top:22px; }
+    .social a { display:grid; place-items:center; width:37px; height:37px; border:1px solid var(--line);
+      border-radius:10px; color:#bbb; font-size:11px; font-weight:bold; transition:.25s; }
+    .social a:hover { background:white; color:black; transform:translateY(-4px); }
+    main { min-width:0; display:grid; gap:24px; }
+    .section { position:relative; overflow:hidden; border-radius:24px; padding:40px; }
+    .label { color:#999; font-size:10px; letter-spacing:3px; margin-bottom:17px; text-transform:uppercase; }
+    .title { font-size:clamp(27px,4vw,39px); line-height:1.22; letter-spacing:-1px; margin-bottom:22px; }
+    .muted { color:var(--muted); }
+    .hero { min-height:475px; display:flex; align-items:center; perspective:1000px; }
+    .hero-content { position:relative; z-index:2; max-width:590px; }
+    .tag { display:inline-block; padding:7px 13px; border:1px solid #444; border-radius:30px;
+      color:#ccc; font-size:10px; letter-spacing:1px; margin-bottom:24px; }
+    h1 { font-size:clamp(40px,6vw,75px); line-height:1.04; letter-spacing:-3px; margin-bottom:19px;
+      text-shadow:0 8px 30px rgba(255,255,255,.08); }
+    h1 span { display:block; color:transparent; -webkit-text-stroke:1px #aaa; }
+    .intro { max-width:530px; color:#aaa; font-size:14px; margin-bottom:26px; }
+    .buttons { display:flex; flex-wrap:wrap; gap:11px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:12px 18px; border:1px solid #555;
+      border-radius:10px; color:white; background:transparent; font-size:12px; font-weight:700; cursor:pointer; transition:.25s; }
+    .btn.primary { background:white; color:black; border-color:white; }
+    .btn:hover { transform:translateY(-4px); box-shadow:0 12px 28px rgba(255,255,255,.1); }
+    .sphere { position:absolute; right:7%; top:25%; width:170px; height:170px; border-radius:50%;
+      background:radial-gradient(circle at 28% 24%,#fff 0%,#aaa 4%,#555 16%,#1a1a1a 43%,#050505 72%);
+      box-shadow:inset -20px -20px 40px #000,inset 10px 10px 25px #ffffff4d,0 0 55px #ffffff12;
+      animation:float 6s ease-in-out infinite; pointer-events:none; }
+    .sphere:before,.sphere:after { content:""; position:absolute; inset:-17px; border:1px solid #ffffff44;
+      border-radius:50%; transform:rotateX(65deg) rotateY(15deg); }
+    .sphere:after { inset:-29px; transform:rotateX(75deg) rotateY(-25deg); border-color:#ffffff20; }
+    @keyframes float { 0%,100%{transform:translateY(0) rotateY(0)} 50%{transform:translateY(-18px) rotateY(24deg)} }
+    .about { color:#aaa; font-size:14px; margin-bottom:24px; }
+    .grid2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    .info { border:1px solid var(--line); background:#ffffff06; border-radius:12px; padding:16px; transition:.25s; }
+    .info:hover { transform:translateY(-4px); background:#ffffff0c; }
+    .info small { display:block; color:#777; font-size:10px; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+    .info strong { font-size:13px; overflow-wrap:anywhere; }
+    .skills { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    .skill { padding:20px; border:1px solid var(--line); border-radius:15px; background:linear-gradient(145deg,#191919,#090909);
+      transition:.25s; transform-style:preserve-3d; }
+    .skill:hover { transform:perspective(700px) rotateX(4deg) rotateY(-4deg) translateY(-5px); border-color:#777; }
+    .icon { font-size:23px; margin-bottom:9px; }
+    .skill h3,.project h3 { font-size:14px; margin-bottom:6px; }
+    .skill p,.project p { color:#888; font-size:12px; }
+    .timeline { border-left:1px solid #444; padding-left:24px; margin-left:6px; }
+    .item { position:relative; margin-bottom:26px; }
+    .item:last-child { margin-bottom:0; }
+    .item:before { content:""; position:absolute; left:-30px; top:8px; width:10px; height:10px;
+      background:white; border-radius:50%; box-shadow:0 0 12px #ffffff55; }
+    .date { color:#888; font-size:11px; margin-bottom:4px; }
+    .item h3 { font-size:15px; margin-bottom:3px; }
+    .item p { color:#888; font-size:12px; }
+    .projects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+    .project { min-height:195px; display:flex; flex-direction:column; padding:21px; border:1px solid var(--line);
+      border-radius:16px; background:linear-gradient(145deg,#191919,#090909); transition:.25s; }
+    .project:hover { transform:perspective(800px) rotateX(3deg) rotateY(-3deg) translateY(-5px); border-color:#777; }
+    .number { font-size:28px; font-weight:900; color:#444; margin-bottom:10px; }
+    .project p { margin-bottom:14px; }
+    .project a { margin-top:auto; color:#ddd; font-size:12px; }
+    .contact-copy { color:#999; font-size:14px; margin-bottom:23px; }
+    .form { display:grid; gap:13px; }
+    .formrow { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+    input,textarea { width:100%; background:#090909; color:white; border:1px solid #333; border-radius:10px;
+      padding:13px; outline:none; font-size:12px; }
+    input:focus,textarea:focus { border-color:#aaa; }
+    input::placeholder,textarea::placeholder { color:#777; }
+    textarea { min-height:125px; resize:vertical; }
+    .note { color:#777; font-size:10px; }
+    footer { text-align:center; color:#666; font-size:11px; padding:5px 0 22px; }
+    footer span { color:white; }
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .7s,transform .7s; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media(max-width:1000px) {
+      .layout { grid-template-columns:235px minmax(0,1fr); padding:18px; gap:17px; }
+      .section { padding:29px; } .sphere { width:125px; height:125px; }
+      h1 { font-size:52px; }
+    }
+    @media(max-width:760px) {
+      .layout { grid-template-columns:1fr; padding:13px; }
+      .sidebar { position:relative; top:0; padding:20px; }
+      .avatar { width:110px; height:110px; }
+      nav { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
+      nav a { padding:8px 4px; text-align:center; font-size:11px; }
+      nav a span { display:none; }
+      .social { margin-top:15px; }
+      main { gap:14px; } .section { padding:24px; border-radius:18px; }
+      .hero { min-height:410px; } h1 { font-size:clamp(39px,9vw,59px); }
+      .sphere { width:100px; height:100px; top:9%; right:4%; opacity:.42; }
+    }
+    @media(max-width:480px) {
+      .section { padding:21px 17px; } .grid2,.skills,.projects,.formrow { grid-template-columns:1fr; }
+      .hero { min-height:390px; } h1 { font-size:40px; letter-spacing:-2px; }
+      .sphere { width:80px; height:80px; right:-5px; opacity:.3; }
+      .title { font-size:28px; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      *,*:before,*:after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; }
+      .reveal { opacity:1; transform:none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="glow"></div><div class="glow two"></div>
+  <div class="layout">
+    <aside class="sidebar glass">
+      <a class="logo" href="#home">NF<span>.</span></a>
+      <div class="avatar">
+        <!-- Replace this placeholder with Nawal's own photo if desired. -->
+        <img src="https://placehold.co/400x400/111111/FFFFFF?text=NAWAL+FATIMA"
+             alt="Nawal Fatima profile placeholder">
+      </div>
+      <h2 class="name">Nawal Fatima</h2>
+      <p class="role">EDUCATION STUDENT · AI ENTHUSIAST</p>
+      <div class="status"><span class="dot"></span> Learning & Growing</div>
+      <hr>
+      <nav aria-label="Main navigation">
+        <a class="active" href="#home"><span>01</span> Home</a>
+        <a href="#about"><span>02</span> About</a>
+        <a href="#skills"><span>03</span> Skills</a>
+        <a href="#education"><span>04</span> Education</a>
+        <a href="#projects"><span>05</span> Interests</a>
+        <a href="#contact"><span>06</span> Contact</a>
+      </nav>
+      <div class="social">
+        <!-- Add actual social profile links here when available. -->
+        <a href="mailto:syedanawalfatima333@gmail.com" aria-label="Email Nawal">✉</a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="section hero glass reveal" id="home">
+        <div class="sphere" aria-hidden="true"></div>
+        <div class="hero-content">
+          <div class="tag">WELCOME TO MY PORTFOLIO</div>
+          <h1>NAWAL<span>FATIMA.</span></h1>
+          <p class="intro">
+            Education student, aspiring Python developer, and AI enthusiast.
+            I am building my knowledge in education and technology, with a
+            passion for learning, problem-solving, and applying new skills
+            to real-world opportunities.
+          </p>
+          <div class="buttons">
+            <a class="btn primary" href="#skills">Explore My Skills ↗</a>
+            <a class="btn" href="#contact">Contact Me →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section glass reveal" id="about">
+        <p class="label">01 / ABOUT ME</p>
+        <h2 class="title">Curious Mind.<br><span class="muted">Purposeful Learning.</span></h2>
+        <p class="about">
+          I am a motivated and enthusiastic BS Education student with an
+          interest in teaching, Python development, and Artificial Intelligence.
+          I am currently pursuing my BS in Education and enhancing my technical
+          knowledge through an AI course at Corvit Digital, Muzaffarabad.
+          I am eager to keep learning, grow professionally, and apply my
+          educational and technical knowledge to practical opportunities.
+        </p>
+        <div class="grid2">
+          <div class="info"><small>Current Study</small><strong>BS Education — 3rd Semester</strong></div>
+          <div class="info"><small>AI Course</small><strong>Corvit Digital, Muzaffarabad</strong></div>
+          <div class="info"><small>Career Interest</small><strong>Python Development</strong></div>
+          <div class="info"><small>Email</small><strong><a href="mailto:syedanawalfatima333@gmail.com">syedanawalfatima333@gmail.com</a></strong></div>
+        </div>
+      </section>
+
+      <section class="section glass reveal" id="skills">
+        <p class="label">02 / SKILLS</p>
+        <h2 class="title">What I’m <span class="muted">Developing.</span></h2>
+        <div class="skills">
+          <article class="skill"><div class="icon">✎</div><h3>Teaching & Educational Support</h3><p>Interest in teaching, learning support, and education.</p></article>
+          <article class="skill"><div class="icon">&lt;/&gt;</div><h3>Python Programming</h3><p>Building programming knowledge and developing coding skills.</p></article>
+          <article class="skill"><div class="icon">AI</div><h3>Artificial Intelligence</h3><p>Learning about AI through a course at Corvit Digital.</p></article>
+          <article class="skill"><div class="icon">↗</div><h3>Communication & Learning</h3><p>Open to learning, sharing ideas, and developing professionally.</p></article>
+          <article class="skill"><div class="icon">◇</div><h3>Problem-Solving</h3><p>Approaching challenges with curiosity and a willingness to learn.</p></article>
+        </div>
+      </section>
+
+      <section class="section glass reveal" id="education">
+        <p class="label">03 / EDUCATION & TRAINING</p>
+        <h2 class="title">My Learning <span class="muted">Journey.</span></h2>
+        <div class="timeline">
+          <div class="item">
+            <div class="date">CURRENTLY ENROLLED</div>
+            <h3>BS Education</h3>
+            <p>Currently studying in the 3rd semester.</p>
+          </div>
+          <div class="item">
+            <div class="date">COURSE & TECHNICAL LEARNING</div>
+            <h3>Artificial Intelligence (AI) Course</h3>
+            <p>Corvit Digital, Muzaffarabad.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section glass reveal" id="projects">
+        <p class="label">04 / AREAS OF INTEREST</p>
+        <h2 class="title">What I’m <span class="muted">Exploring.</span></h2>
+        <div class="projects">
+          <article class="project">
+            <div class="number">01</div>
+            <h3>Education & Teaching</h3>
+            <p>Building knowledge related to teaching, educational support, and student learning.</p>
+            <a href="#contact">Connect with me ↗</a>
+          </article>
+          <article class="project">
+            <div class="number">02</div>
+            <h3>Python Programming</h3>
+            <p>Developing programming skills as a foundation for future software projects.</p>
+            <a href="#contact">Connect with me ↗</a>
+          </article>
+          <article class="project">
+            <div class="number">03</div>
+            <h3>Artificial Intelligence</h3>
+            <p>Exploring AI concepts and learning how technology can support practical tasks.</p>
+            <a href="#contact">Connect with me ↗</a>
+          </article>
+          <article class="project">
+            <div class="number">04</div>
+            <h3>Continuous Learning</h3>
+            <p>Strengthening communication, problem-solving, and professional development.</p>
+            <a href="#contact">Connect with me ↗</a>
+          </article>
+        </div>
+        <p class="note" style="margin-top:16px">These are learning interests, not claims of completed projects or professional experience.</p>
+      </section>
+
+      <section class="section glass reveal" id="contact">
+        <p class="label">05 / CONTACT</p>
+        <h2 class="title">Let’s <span class="muted">Connect.</span></h2>
+        <p class="contact-copy">For educational opportunities, collaboration, or professional inquiries, you can reach me by email.</p>
+        <div class="buttons" style="margin-bottom:22px">
+          <a class="btn primary" href="mailto:syedanawalfatima333@gmail.com?subject=Portfolio%20Inquiry">Email Nawal ↗</a>
+          <button class="btn" type="button" id="copyEmail">Copy Email</button>
+        </div>
+        <p class="note" id="copyStatus" aria-live="polite">Email: syedanawalfatima333@gmail.com</p>
+      </section>
+
+      <footer>© <span id="year"></span> Nawal Fatima. Built with curiosity and purpose.</footer>
+    </main>
+  </div>
+
+  <script>
+    // Automatically update the copyright year.
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Create the monochrome animated particle background.
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let particles = [], width = 0, height = 0, frame;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(70, Math.floor(width * height / 19000));
+      particles = Array.from({length: count}, () => ({
+        x: Math.random() * width, y: Math.random() * height,
+        r: Math.random() * 1.4 + .3,
+        vx: (Math.random() - .5) * .28, vy: (Math.random() - .5) * .28
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach((p, i) => {
+        if (!reducedMotion) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+        }
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,.5)";
+        ctx.fill();
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j], dx = p.x - q.x, dy = p.y - q.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < 105) {
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(255,255,255,${.08 * (1 - distance / 105)})`;
+            ctx.lineWidth = .6; ctx.stroke();
+          }
+        }
+      });
+      if (!reducedMotion) frame = requestAnimationFrame(drawParticles);
+    }
+
+    resizeCanvas();
+    drawParticles();
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(frame);
+      resizeCanvas();
+      drawParticles();
+    });
+
+    // Reveal sections when they enter the viewport.
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && !reducedMotion) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold: .12});
+      revealItems.forEach(item => revealObserver.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("visible"));
+    }
+
+    // Highlight the navigation item for the visible section.
+    const navLinks = document.querySelectorAll("nav a");
+    const pageSections = document.querySelectorAll("main section[id]");
+    if ("IntersectionObserver" in window) {
+      const navObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => link.classList.toggle(
+              "active", link.getAttribute("href") === "#" + entry.target.id
+            ));
+          }
+        });
+      }, {rootMargin: "-25% 0px -60% 0px"});
+      pageSections.forEach(section => navObserver.observe(section));
+    }
+
+    // Add subtle 3D tilt on desktop pointer devices.
+    const canHover = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+    if (canHover && !reducedMotion) {
+      document.querySelectorAll(".sidebar,.skill,.project").forEach(card => {
+        card.addEventListener("mousemove", event => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - .5;
+          const y = (event.clientY - rect.top) / rect.height - .5;
+          card.style.transform = `perspective(800px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg)`;
+        });
+        card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+      });
+    }
+
+    // Copy Nawal's email address when the button is clicked.
+    document.getElementById("copyEmail").addEventListener("click", async () => {
+      const email = "syedanawalfatima333@gmail.com";
+      const status = document.getElementById("copyStatus");
+      try {
+        await navigator.clipboard.writeText(email);
+        status.textContent = "Email address copied to clipboard.";
+      } catch (error) {
+        status.textContent = "Email: " + email + " (select and copy this address)";
+      }
+    });
+  </script>
+</body>
+</html>
